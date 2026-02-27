@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Networking Concepts • Red Devils</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <img src="images/logo/manutd.png" alt="Red Devils Logo" class="nav-logo">
+      RED DEVILS
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="players.html">Players</a>
+      <a class="active" href="networking.html">Networking Concepts</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Networking Concepts</h1>
+    <p class="sub">Deployment & Technical Documentation</p>
+
+    <div class="grid">
+      <section class="card">
+        <div class="card-header">DNS RESOLUTION</div>
+        <p>When someone enters my Github Pages domain into a browser, the DNS looks up the IP address associated with the domain.</p>
+        <p>If the address is not already cached, a DNS resolver contacts Github's DNS servers to find the correct IP address</p>
+        <p>Once the IP address is returned, the broswer connects to Github's servers and loads my website.</p>
+      </section>
+
+      <section class="card">
+  <div class="card-header">IP ADDRESSING</div>
+  <p>My domain currently resolves to the following <strong>IPv4 & IPv6</strong> addresses on the GitHub network: 2606... being IPv6 and 185... being IPv4</p>
+  
+  <img src="images/network/ip_addy.png" alt="Terminal screenshot showing GitHub IP addresses" class="terminal-img">
+</section>
+
+      </section>
+      <section class="card">
+  <div class="card-header">PROTOCOLS & HEADERS</div>
+  <p><strong>HTTP vs HTTPS:</strong> My site uses <strong>HTTPS</strong> rather than plain HTTP. This means all traffic between the browser and GitHub's servers is encrypted via <strong>TLS</strong>, preventing anyone from intercepting or tampering with the data in transit.</p>
+
+<p><strong>Status Codes:</strong> When the page loads successfully it returns <strong>200 OK</strong>. A <strong>304 Not Modified</strong> response also appears because the browser loads the page from its local cache instead of re-downloading it, which speeds up load time.</p>
+
+<p><strong>Request & Response Headers:</strong> When a user visits the website, the browser sends a <code>GET</code> request to the server along with headers like <code>If-None-Match</code> and <code>If-Modified-Since</code> to check if the page has changed.
+
+The server responds with <code>304 Not Modified</code>, which means the page has not been updated and can be loaded from the browser's cache instead of being downloaded again. 
+
+The <code>Cache-Control: max-age=600</code> header allows the browser to store the page for <strong>10 minutes</strong>, helping the website load faster.
+</p>
+    <strong>Request &amp; Response Headers:</strong>
+    <span class="zoom-hint">Click images to enlarge</span>
+    
+    <img src="images/network/request_header.png" alt="Browser Request Headers" class="terminal-img zoomable" onclick="openModal(this)">
+    
+    <img src="images/network/response_header.png" alt="Server Response Headers" class="terminal-img zoomable" onclick="openModal(this)">
+  </div>
+</section>
+
+
+<div id="imgModal" class="img-modal" onclick="closeModal()">
+  <div class="modal-backdrop"></div>
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <img id="modalImg" src="" alt="" class="modal-img">
+</div>
+    </div>
+  </main>
+
+  <style>
+    .zoom-hint {
+      display: inline-block;
+      margin-left: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      opacity: 0.7;
+    }
+
+    .terminal-img.zoomable {
+      cursor: zoom-in;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+    .terminal-img.zoomable:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+      filter: brightness(1.05);
+    }
+
+    /* Modal overlay */
+    .img-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal.open {
+      display: flex;
+    }
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(6px);
+    }
+    .modal-img {
+      position: relative;
+      z-index: 2;
+      max-width: 92vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      animation: modalPop 0.22s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.88); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px; right: 22px;
+      z-index: 3;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 18px;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .modal-close:hover { background: var(--red); }
+  </style>
+
+  <script>
+    function openModal(img) {
+      const modal = document.getElementById('imgModal');
+      document.getElementById('modalImg').src = img.src;
+      document.getElementById('modalImg').alt = img.alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('imgModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+  <footer class="footer">
+    <span>© 2026 • Red Devils Network Project • #GlazersOut</span>
+  </footer>
+</body>
+</html>
