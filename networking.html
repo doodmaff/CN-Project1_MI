@@ -22,7 +22,8 @@
   <main class="container">
     <h1 class="page-title">Networking Concepts</h1>
     <p class="sub">Deployment & Technical Documentation</p>
-
+    
+    <! -- DNS explanation section --> 
     <div class="grid">
       <section class="card">
         <div class="card-header">DNS RESOLUTION</div>
@@ -30,15 +31,16 @@
         <p>If the address is not already cached, a DNS resolver contacts Github's DNS servers to find the correct IP address</p>
         <p>Once the IP address is returned, the broswer connects to Github's servers and loads my website.</p>
       </section>
-
+      <! -- IP Adressing section --> 
       <section class="card">
   <div class="card-header">IP ADDRESSING</div>
   <p>My domain currently resolves to the following <strong>IPv4 & IPv6</strong> addresses on the GitHub network: 2606... being IPv6 and 185... being IPv4</p>
   
   <img src="images/network/ip_addy.png" alt="Terminal screenshot showing GitHub IP addresses" class="terminal-img">
 </section>
-
       </section>
+
+      <! -- Protocol and Headers section --> 
       <section class="card">
   <div class="card-header">PROTOCOLS & HEADERS</div>
   <p><strong>HTTP vs HTTPS:</strong> My site uses <strong>HTTPS</strong> rather than plain HTTP. This means all traffic between the browser and GitHub's servers is encrypted via <strong>TLS</strong>, preventing anyone from intercepting or tampering with the data in transit.</p>
@@ -51,6 +53,7 @@ The server responds with <code>304 Not Modified</code>, which means the page has
 
 The <code>Cache-Control: max-age=600</code> header allows the browser to store the page for <strong>10 minutes</strong>, helping the website load faster.
 </p>
+        <! -- Headers screenshots --> 
     <strong>Request &amp; Response Headers:</strong>
     <span class="zoom-hint">Click images to enlarge</span>
     
@@ -60,7 +63,7 @@ The <code>Cache-Control: max-age=600</code> header allows the browser to store t
   </div>
 </section>
 
-
+    <! -- Image modal for enlarging the headers screenshots --> 
 <div id="imgModal" class="img-modal" onclick="closeModal()">
   <div class="modal-backdrop"></div>
   <button class="modal-close" onclick="closeModal()">✕</button>
@@ -89,7 +92,6 @@ The <code>Cache-Control: max-age=600</code> header allows the browser to store t
       filter: brightness(1.05);
     }
 
-    /* Modal overlay */
     .img-modal {
       display: none;
       position: fixed;
@@ -159,4 +161,5 @@ The <code>Cache-Control: max-age=600</code> header allows the browser to store t
     <span>© 2026 • Red Devils Network Project • #GlazersOut</span>
   </footer>
 </body>
+
 </html>
