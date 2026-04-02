@@ -37,7 +37,7 @@ async function fetchESPNTable() {
         <tr ${rowClass}>
           <td>${rank}</td>
           <td class="team-cell">
-            <img src="${team.logos[0].href}" alt="" class="table-logo">
+            <img src="${team.logos[0].href}" alt="" class="table-logo" loading="lazy">
             ${team.displayName}
           </td>
           <td>${gp}</td>
@@ -48,7 +48,8 @@ async function fetchESPNTable() {
     });
 
     tableHTML += `</tbody></table>`;
-    container.innerHTML = tableHTML;
+    // Sanitize the generated HTML with DOMPurify before inserting it into the DOM to prevent XSS attacks.
+    container.innerHTML = DOMPurify.sanitize(tableHTML);
 
   } catch (error) {
     console.error("API Error:", error);
