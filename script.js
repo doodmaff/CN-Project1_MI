@@ -4,6 +4,9 @@ async function fetchESPNTable() {
 
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Server returned ${response.status}`);
+    }
     const data = await response.json();
     const standings = data.children[0].standings.entries;
 
@@ -49,12 +52,16 @@ async function fetchESPNTable() {
 
     tableHTML += `</tbody></table>`;
     // Sanitize the generated HTML with DOMPurify before inserting it into the DOM to prevent XSS attacks.
-    container.innerHTML = DOMPurify.sanitize(tableHTML);
+    if (typeof DOMPurify !== 'undefined') {
+      container.innerHTML = DOMPurify.sanitize(tableHTML);
+    } else {
+      throw new Error("DOMPurify failed to load.");
+    }
 
   } catch (error) {
     console.error("API Error:", error);
-    container.innerHTML = "<div class='loading'>Failed to load live data.</div>";
+    container.innerHTML = `<div class='loading'>Failed to load live data. <br><small style="color: var(--red);">Error: ${error.message}</small></div>`;
   }
 }
 
-fetchESPNTable();
+document.addEventListener("DOMContentLoaded", fetchESPNTable);
