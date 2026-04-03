@@ -403,3 +403,58 @@ h1 { margin: 0 0 10px; font-size: 38px; }
   color: var(--muted);
   font-style: italic;
 }
+
+/* Guestbook Styles */
+.guestbook-section {
+  margin-bottom: 24px;
+}
+
+.guestbook-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .guestbook-container { grid-template-columns: 1fr; }
+}
+
+.guestbook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.guestbook-form input, 
+.guestbook-form textarea {
+  width: 100%; padding: 12px; border-radius: 8px;
+  background: rgba(0,0,0,0.3); border: 1px solid var(--line);
+  color: var(--text); font-family: inherit; resize: vertical;
+}
+
+.guestbook-form input:focus, .guestbook-form textarea:focus {
+  outline: none; border-color: var(--red);
+}
+
+.guestbook-form button {
+  padding: 12px; background: var(--red); color: #fff;
+  border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s;
+}
+
+.guestbook-form button:hover { background: #b01620; }
+.guestbook-form button:disabled { background: #555; cursor: not-allowed; }
+
+.guestbook-messages {
+  max-height: 250px; overflow-y: auto; display: flex;
+  flex-direction: column; gap: 12px; padding-right: 10px;
+}
+
+/* Scrollbar for messages */
+.guestbook-messages::-webkit-scrollbar { width: 6px; }
+.guestbook-messages::-webkit-scrollbar-thumb { background: var(--red); border-radius: 4px; }
+.guestbook-messages::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+
+.gb-message-card { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--red); }
+.gb-name { font-weight: 900; color: var(--red); font-size: 14px; margin-bottom: 4px; text-transform: uppercase; }
+.gb-text { font-size: 14px; line-height: 1.4; color: var(--muted); margin: 0;}
+.gb-date { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 8px; text-align: right; }

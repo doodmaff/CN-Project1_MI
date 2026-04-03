@@ -111,8 +111,24 @@
   </div>
 </section>
 
+<!-- Fan Zone Guestbook -->
+<section class="card guestbook-section">
+  <div class="card-header">FAN ZONE GUESTBOOK</div>
+  <div class="guestbook-container">
+    <form id="guestbook-form" class="guestbook-form">
+      <input type="text" id="gb-name" placeholder="Your Name" required maxlength="30">
+      <textarea id="gb-message" placeholder="Leave a message for the team... (e.g. Can we get the ball behind the back of the net?)" required rows="3" maxlength="150"></textarea>
+      <button type="submit" id="gb-submit">Post Message</button>
+    </form>
+    <div class="guestbook-messages" id="guestbook-messages">
+      <!-- Messages from Firebase will load here -->
+      <div class="loading" style="font-size:12px;">Waiting for database connection...</div>
+    </div>
+  </div>
+</section>
+
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
-<script src="script.min.js" defer></script>
+<script type="module" src="script.js"></script>
 
     <section class="home-grid-3">
       
