@@ -8,7 +8,8 @@ The website includes a dynamic guestbook, security protections against common at
 ---
 
 ## Live Website
-https://doodmaff.github.io/CN-Project1_MI/index.html
+https://doodmaff.github.io/CN-RedDevils_MIR/ 
+https://cn-red-devils-mir.vercel.app/
 
 ---
 
